@@ -1,0 +1,86 @@
+{
+  "layer": "top", // Waybar at top layer
+  "position": "top", // Waybar position (top|bottom|left|right)
+  "margin": "0 0 0 0",
+  // Choose the order of the modules
+  "modules-left": ["clock", "idle_inhibitor"],
+  "modules-center": [],
+  "modules-right": ["cpu", "pulseaudio", "battery", "network", "tray"],
+  "mode": {
+    "docked": {
+      "output": ["DP-1"]
+    }
+  },
+  // Modules configuration
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  },
+  "clock": {
+    "interval": 1,
+    "format": "<span color=\"#f2cdcd\"></span>  {:%I : %M %p}",
+    "format-alt": "<span color=\"#cba6f7\"></span>   {:%d / %m / %Y}"
+  },
+  "clock#time": {
+    "interval": 1,
+    "format": "{:%H:%M:%S}",
+    "tooltip": false
+  },
+
+  "clock#date": {
+    "interval": 10,
+    "format": "  {:%e %b %Y}", // Icon: calendar-alt
+    "tooltip-format": "{:%e %B %Y}",
+  },
+  "cpu": {
+    "format": "<span color=\"#fab387\"></span>  {usage}%  ({load})"
+  },
+  "memory": {
+    "format": "{}% "
+  },
+  "battery": {
+    "interval": 10,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}  {capacity}%",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": [
+      "<span color=\"#f38ba8\">  </span>",
+      "<span color=\"#f9e2af\">  </span>",
+      "<span color=\"#f9e2af\">  </span>",
+      "<span color=\"#a6e3a1\">  </span>",
+      "<span color=\"#a6e3a1\">  </span>"
+    ]
+  },
+  "network": {
+    // "interface": "wlp2s0", // (Optional) To force the use of this interface
+    "format-wifi": "",
+    "format-ethernet": "",
+    "format-disconnected": "⚠",
+    "interval": 7
+  },
+  "pulseaudio": {
+    //"scroll-step": 1,
+    "format": "<span color=\"#89dceb\">{icon}</span>  {volume}% {format_source}",
+    "format-muted": "<span color=\"#f5e0dc\">🔇</span> {format_source}",
+    "format-source-muted": "| mic: muted",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "default": ["", ""]
+    },
+    "on-click": "pavucontrol"
+  },
+  "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+          "activated": "",
+          "deactivated": ""
+      }
+  }
+}
