@@ -1,0 +1,84 @@
+# useful functions
+autoload -Uz zmv zcalc zargs url-quote-magic bracketed-paste-magic
+zle -N self-insert url-quote-magic
+zle -N bracketed-paste bracketed-paste-magic
+
+# tilde directories
+hash -d \
+  nixos=/etc/nixos \
+  dl=~/Downloads \
+  git=~/git
+
+hash -d \
+  hub=~git/github.com \
+  lab=~git/gitlab.com
+
+
+# modified copy of skim-history-widget to behave differently depending on whether shift+a or enter was pressed to exit skim
+skim-history-shell() {
+  local selected num pressed precmd
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+  selected=( $(fc -rl 1 | perl -ne 'print if !$seen{(/^\s*[0-9]+\**\s+(.*)/, $1)}++' |
+    SKIM_DEFAULT_OPTIONS="--height ${SKIM_TMUX_HEIGHT:-40%} $SKIM_DEFAULT_OPTIONS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort --expect=enter,shift-a --bind=shift-a:accept $SKIM_CTRL_R_OPTS --query=${(qqq)LBUFFER} --no-multi" $(__skimcmd)) )
+  local ret=$?
+  if [ -n "$selected" ]; then
+    num=$selected[2]
+    pressed=$selected[1]
+    if [ -n "$num" ]; then
+      zle vi-fetch-history -n $num
+    fi
+  fi
+  if [[ $pressed == enter ]]; then
+    zle accept-line
+  elif [[ $pressed == shift-a ]];then
+    zle vi-add-eol
+  fi
+  for precmd in $precmd_functions; do
+      $precmd
+  done
+  zle reset-prompt
+  return $ret
+}
+
+zle -N skim-history-shell
+
+# key binds
+bindkey -v '^?' backward-delete-char
+bindkey '^[OA' skim-history-shell
+bindkey -M vicmd 'k' skim-history-shell
+
+# if in tmux launch skim in tmux pane
+[[ ${+TMUX} == 1 ]] \
+  && SKIM_TMUX=1
+
+#load compinit
+autoload -Uz compinit
+
+if [[ -f ~/.zcompdump ]]; then
+  typeset -i updated_at=$(date +'%j' -r ~/.zcompdump \
+    || stat -f '%Sm' -t '%j' ~/.zcompdump)
+
+  # save time if completion cache has been update recently
+  if [ $(date +'%j') != $updated_at ]; then
+    compinit -u
+  else
+    compinit -C
+  fi
+else
+    compinit -C
+fi
+
+# Case insens only when no case match; after all completions loaded
+zstyle ':completion:*' matcher-list \
+  "" 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Auto rehash for new binaries
+zstyle ':completion:*' rehash true
+
+
+# remove duplicates from paths
+typeset -U path
+typeset -U fpath
+
+# keep shell state frozen
+ttyctl -f
