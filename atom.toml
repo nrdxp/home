@@ -1,0 +1,20 @@
+[package]
+label = "hosts"
+version = "0.1.1"
+
+[package.sets]
+atom = "https://github.com/ekala-project/atom"
+home = ["::", "https://github.com/nrdxp/home"]
+
+[compose.with.atom-nix]
+from = "atom"
+entry = "src"
+
+[deps.from.home]
+nix = "^0.1.0"
+users = "^0.1.0"
+network = "^0.1.0"
+virt = "^0.1.0"
+
+[deps.direct.nix]
+micro-vm.tar = "https://github.com/microvm-nix/microvm.nix/archive/80bddbd51fda2c71d83449f5927e4d72a2eb0d89.tar.gz"
