@@ -1,0 +1,10 @@
+[package]
+label = "term"
+version = "0.1.2"
+
+[package.sets]
+atom = "https://github.com/ekala-project/atom"
+
+[compose.with.atom-nix]
+from = "atom"
+entry = "src"
