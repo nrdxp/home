@@ -1,0 +1,14 @@
+[package]
+label = "nix"
+version = "0.1.0"
+
+[package.sets]
+atom = "https://github.com/ekala-project/atom"
+
+[compose.with.atom-nix]
+from = "atom"
+
+[deps.direct.nix]
+nixpkgs = { git = "https://github.com/nixos/nixpkgs", ref = "nixpkgs-unstable" }
+home-manager.git = "https://github.com/nix-community/home-manager.git"
+flake-registry.build = "https://raw.githubusercontent.com/NixOS/flake-registry/refs/heads/master/flake-registry.json"
