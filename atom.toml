@@ -1,0 +1,16 @@
+[package]
+label = "apps"
+version = "0.1.2"
+
+[package.sets]
+atom = "https://github.com/ekala-project/atom"
+home = ["::", "https://github.com/nrdxp/home"]
+
+[compose.with.atom-nix]
+from = "atom"
+
+[deps.from.home]
+nix = "^0.1.0"
+
+[deps.direct.nix]
+foks.url = "https://raw.githubusercontent.com/NixOS/nixpkgs/393d5e815a19acad8a28fc4b27085e42c483b4f6/pkgs/by-name/fo/foks/package.nix"
