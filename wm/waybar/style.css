@@ -1,0 +1,151 @@
+@import "mocha.css";
+
+* {
+  color: @text;
+  border: none;
+  font-family: Roboto, "Font Awesome 5", "SFNS Display", Helvetica, Arial,
+    sans-serif;
+  font-size: 1.04em;
+  padding: 0.2em 0;
+}
+
+window#waybar {
+  background-color: shade(@base, 0.9);
+  border: 2px solid alpha(@crust, 0.3);
+}
+
+window#waybar.hidden {
+  opacity: 0;
+}
+
+#workspaces {
+  padding: 0 1em;
+}
+
+#workspaces button {
+  border-radius: 50%;
+  margin: 0.25em;
+  padding: 0 0.5em;
+  background-color: @surface1;
+}
+
+#workspaces button.active {
+  color: @green;
+}
+
+#workspaces button.empty {
+  color: @overlay0;
+}
+
+#workspaces button:hover {
+  box-shadow: none;
+  text-shadow: none;
+  background-color: @surface2;
+  border-bottom: 2px solid @red;
+  color: @subtext1;
+}
+
+#window {
+  border-radius: 0 2em 2em 0;
+  padding: 0 2em;
+  margin: 0 1em 0 0;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#workspaces,
+#idle_inhibitor {
+  padding: 0 1em;
+  margin: 0 1em;
+  background-color: @surface0;
+  border-radius: 2em;
+}
+
+#clock {
+  border-radius: 0 2em 2em 0;
+  margin: 0;
+  padding: 0 1em;
+}
+
+#battery {
+}
+
+#battery.charging {
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background: #f53c3c;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#cpu {
+}
+
+#memory {
+}
+
+#backlight {
+}
+
+#network {
+  margin: 0 0 0 1em;
+  padding: 0 1em;
+  border-radius: 2em 0 0 2em;
+  font-size: 1.2em;
+}
+
+#network.disconnected {
+}
+
+#pulseaudio {
+}
+
+#pulseaudio.muted {
+}
+
+#custom-media {
+}
+
+.custom-spotify {
+}
+
+.custom-vlc {
+}
+
+#temperature {
+}
+
+#temperature.critical {
+}
+
+#tray {
+  border-radius: 0;
+  margin: 0;
+  padding: 0 1em 0 0;
+}
+
+#idle_inhibitor {
+}
+
+#idle_inhibitor.activated {
+}
