@@ -1,0 +1,3 @@
+{
+  Foks = mod.foks.pkg;
+}
