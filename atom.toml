@@ -1,0 +1,15 @@
+[package]
+label = "dev"
+version = "0.1.2"
+
+[package.sets]
+atom = "https://github.com/ekala-project/atom"
+home = ["::", "https://github.com/nrdxp/home"]
+
+[compose.with.atom-nix]
+entry = "env"
+from = "atom"
+
+[deps.from.home]
+nix = "^0.1.0"
+apps = "^0.1.1"
