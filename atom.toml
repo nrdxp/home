@@ -1,0 +1,4 @@
+[atom]
+tag = "network"
+version = "0.1.1"
+description = "NixOS Network Modules"
