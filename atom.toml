@@ -1,0 +1,4 @@
+[atom]
+tag = "wm"
+version = "0.1.2"
+description = "home-manager modules for nrdxp's preferred window manager environment"
