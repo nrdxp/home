@@ -1,0 +1,3 @@
+{
+  Pkgs = get.nixpkgs { };
+}
