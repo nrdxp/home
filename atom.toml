@@ -1,0 +1,10 @@
+[package]
+label = "network"
+version = "0.1.0"
+
+[package.sets]
+atom = "https://github.com/ekala-project/atom"
+
+[compose.with.atom-nix]
+from = "atom"
+entry = "src"
