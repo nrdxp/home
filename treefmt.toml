@@ -1,0 +1,23 @@
+[formatter.nix]
+command = "alejandra"
+options = []
+includes = ["*.nix"]
+excludes = []
+
+[formatter.sh]
+command = "shfmt"
+options = []
+includes = ["*.sh", ".envrc"]
+excludes = []
+
+[formatter.toml]
+command = "taplo"
+options = ["fmt"]
+includes = ["*.toml"]
+excludes = []
+
+[formatter.prettier]
+command = "prettier"
+options = ["--write"]
+includes = ["*.json", "*.md", "*.yaml", "*.yml"]
+excludes = ["*/sources.json"]

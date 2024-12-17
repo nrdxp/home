@@ -1,16 +1,25 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "nrd";
   home.homeDirectory = "/var/home/nrd";
+  nixpkgs.config.allowUnfree = true;
 
   imports = [
     mod.term.helix
     mod.term.git
     mod.term.tmux
+    mod.term.aliases
+    mod.term.zsh
   ];
+
+  programs.gpg.enable = true;
+  services.gpg-agent.enable = true;
+  services.gpg-agent.enableSshSupport = true;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
