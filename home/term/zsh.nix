@@ -58,7 +58,6 @@ in {
       procs
       xz
       skim
-      zsh-completions
     ];
   };
 
@@ -150,6 +149,8 @@ in {
             kubectl
             cargo
             colmena
+            zsh-completions
+            systemd
             (completionCommand kubernetes-helm ["completion" "zsh"])
           ]);
         };

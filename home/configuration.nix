@@ -17,6 +17,15 @@
     mod.term.zsh
   ];
 
+  nix.nixPath = [
+    "nixpkgs=${pkgs.path}"
+  ];
+
+  nix.registry.pkgs.to = {
+    type = "path";
+    path = pkgs.path;
+  };
+
   programs.gpg.enable = true;
   services.gpg-agent.enable = true;
   services.gpg-agent.enableSshSupport = true;
