@@ -1,7 +1,7 @@
 let
   atom = import (builtins.fetchGit {
     url = "https://github.com/ekala-project/atom";
-    rev = "725d2fe9ceed70a5163faf9d0165b8df217c5785";
+    rev = "713a3adffa94e7d64b209b9073ba2fa73080bcb3";
     shallow = true;
   });
 

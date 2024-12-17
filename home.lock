@@ -8,6 +8,8 @@ rev = "bc27f0fde01ce4e1bfec1ab122d72b7380278e68"
 [[deps]]
 id = "term"
 version = "0.1.0"
+rev = "1b904ce97a160a3a1ad6b9f2cf6bcdbd41d71869"
+url = "https://github.com/nrdxp/home.git"
 
 [[deps]]
 name = "hm-config"
