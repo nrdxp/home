@@ -10,13 +10,13 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
-    mod.term.helix
-    mod.term.git
-    mod.term.tmux
-    mod.term.aliases
-    mod.term.zsh
-    mod.term.utils
-    mod.term.fonts
+    atom.term.helix
+    atom.term.git
+    atom.term.tmux
+    atom.term.aliases
+    atom.term.zsh
+    atom.term.utils
+    atom.term.fonts
   ];
 
   nix.nixPath = [

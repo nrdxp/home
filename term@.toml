@@ -1,0 +1,4 @@
+[atom]
+id = "term"
+version = "0.1.0"
+description = "home-manager modules for nrdxp's preferred terminal environment"
