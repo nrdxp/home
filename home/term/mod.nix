@@ -3,6 +3,44 @@
   Git = mod.git;
   Tmux = mod.tmux;
   Zsh = mod.zsh;
+  Fonts = mod.fonts;
+  Utils = {
+    pkgs,
+    lib,
+    ...
+  }:
+    with pkgs; {
+      home.packages =
+        [
+          file
+          less
+          ncdu
+          gopass
+          tig
+          tokei
+          wget
+          binutils
+          coreutils
+          curl
+          direnv
+          dnsutils
+          fd
+          git
+          bottom
+          jq
+          nix-index
+          nmap
+          ripgrep
+          whois
+        ]
+        ++ lib.optionals pkgs.stdenv.isLinux [
+          util-linux
+          iputils
+        ];
+      programs.gpg.enable = true;
+      services.gpg-agent.enable = true;
+      services.gpg-agent.enableSshSupport = true;
+    };
   Aliases.home.shellAliases = {
     v = "$EDITOR";
     pass = "gopass";
@@ -27,8 +65,8 @@
     nr = "np remove";
     ns = "n search --no-update-lock-file";
     nf = "n flake";
-    nepl = "n repl ${pre.pkgs.path}#legacyPackages.${pre.pkgs.system}";
-    srch = "ns ${pre.pkgs.path}";
+    nepl = "n repl pkgs#legacyPackages.${pre.pkgs.system}";
+    srch = "ns pkgs";
     orch = "ns override";
 
     # top
