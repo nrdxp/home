@@ -5,6 +5,6 @@ let
     shallow = true;
   });
 
-  home = atom.importAtom {} (./. + "/home@.toml");
+  home = atom.importAtom {} (./atoms + "/home@.toml");
 in
   home
