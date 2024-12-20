@@ -1,3 +1,7 @@
+# fzf-tab config
+zstyle ':fzf-tab:*' fzf-command sk
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
 # useful functions
 autoload -Uz zmv zcalc zargs url-quote-magic bracketed-paste-magic
 zle -N self-insert url-quote-magic
@@ -44,21 +48,8 @@ zle -N skim-history-shell
 
 # key binds
 bindkey -v '^?' backward-delete-char
-bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 bindkey '^[OA' skim-history-shell
 bindkey -M vicmd 'k' skim-history-shell
-bindkey -M menuselect '\r' .accept-line
-
-# use same logic for recent dir completion as skim
-+autocomplete:recent-directories() {
-  typeset -ga reply=( $("$SKIM_ALT_C_COMMAND") )
-}
-
-# insert common part first
-zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
-zstyle ':autocomplete:*history*:*' insert-unambiguous yes
-zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
 
 # if in tmux launch skim in tmux pane
 [[ ${+TMUX} == 1 ]] \
@@ -73,12 +64,12 @@ if [[ -f ~/.zcompdump ]]; then
 
   # save time if completion cache has been update recently
   if [ $(date +'%j') != $updated_at ]; then
-    zstyle '*:compinit' arguments -u
+    compinit -u
   else
-    zstyle '*:compinit' arguments -C
+    compinit -C
   fi
 else
-    zstyle '*:compinit' arguments -C
+    compinit -C
 fi
 
 # Case insens only when no case match; after all completions loaded

@@ -105,8 +105,7 @@ in {
         "${oh-my-zsh}/share/oh-my-zsh/plugins/urltools/urltools.plugin.zsh"
         "${zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh"
         "${zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-        "${zsh-autocomplete}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
-        "${pkgs.zsh-better-npm-completion}/share/zsh-better-npm-completion"
+        "${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
       ];
 
       source = map (source: "source ${source}") sources;
@@ -169,6 +168,8 @@ in {
       autoload -Uz ${functions}/*(:t)
 
       ${zshrc}
+
+      source "${pkgs.zsh-better-npm-completion}/share/zsh-better-npm-completion"
 
       ${bashCompletion}
 
