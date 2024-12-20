@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   # Home Manager needs a bit of information about you and the paths it should
@@ -26,6 +27,18 @@
   nix.registry.pkgs.to = {
     type = "path";
     path = pkgs.path;
+  };
+
+  # link application desktop files to the user local directory
+  home.activation = {
+    linkDesktopApplications =
+      lib.hm.dag.entryAfter ["writeBoundary"]
+      ''
+        mkdir -p ~/.local/share/applications
+        for app in ~/.nix-profile/share/applications/*; do
+          ln -sf $app ~/.local/share/applications/
+        done
+      '';
   };
 
   # This value determines the Home Manager release that your configuration is
