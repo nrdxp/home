@@ -1,6 +1,6 @@
 {
-  pkgs = atom.nixpkgs {};
-  Main = atom.hm-config {inherit (mod) pkgs configuration;};
+  pkgs = get.nixpkgs {};
+  Main = get.hm-config {inherit (mod) pkgs configuration;};
   Shell = mod.pkgs.mkShell {
     packages = with mod.pkgs; [
       treefmt

@@ -10,14 +10,17 @@
   home.homeDirectory = "/var/home/nrd";
   nixpkgs.config.allowUnfree = true;
 
-  imports = [
-    atom.term.helix
-    atom.term.git
-    atom.term.tmux
-    atom.term.aliases
-    atom.term.zsh
-    atom.term.utils
-    atom.term.fonts
+  imports = let
+    inherit (get) term wm;
+  in [
+    term.helix
+    term.git
+    term.tmux
+    term.aliases
+    term.zsh
+    term.utils
+    term.fonts
+    wm.hyprland
   ];
 
   nix.nixPath = [
