@@ -6,7 +6,7 @@
   programs.git.includes = [
     {
       condition = "gitdir:~/work/**";
-      contents.user.email = "tim.deherrera@iohk.io";
+      contents.user.email = "tdeherrera@anduril.com";
     }
   ];
 }
