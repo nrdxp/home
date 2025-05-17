@@ -63,6 +63,36 @@ in {
     ];
   };
 
+  imports = [
+    {
+      programs.zsh.initContent = lib.mkBefore ''
+        if [[ -r "${"\${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}"}.zsh" ]]; then
+          source "${"\${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}"}.zsh"
+        fi
+        setopt incappendhistory
+        setopt sharehistory
+        setopt histignoredups
+        setopt histfcntllock
+        setopt histreduceblanks
+        setopt histignorespace
+        setopt histallowclobber
+        setopt autocd
+        setopt cdablevars
+        setopt nomultios
+        setopt pushdignoredups
+        setopt autocontinue
+        setopt promptsubst
+
+        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        if [[ $TTY =~ /dev/tty ]]; then
+          source ${mod}/zsh/p10k-ascii.zsh
+        else
+          source ${mod}/zsh/p10k.zsh
+        fi
+      '';
+    }
+  ];
+
   programs.zsh = {
     enable = true;
 
@@ -71,33 +101,7 @@ in {
 
     history.size = 10000;
 
-    initExtraFirst = ''
-      if [[ -r "${"\${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}"}.zsh" ]]; then
-        source "${"\${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}"}.zsh"
-      fi
-      setopt incappendhistory
-      setopt sharehistory
-      setopt histignoredups
-      setopt histfcntllock
-      setopt histreduceblanks
-      setopt histignorespace
-      setopt histallowclobber
-      setopt autocd
-      setopt cdablevars
-      setopt nomultios
-      setopt pushdignoredups
-      setopt autocontinue
-      setopt promptsubst
-
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      if [[ $TTY =~ /dev/tty ]]; then
-        source ${mod}/zsh/p10k-ascii.zsh
-      else
-        source ${mod}/zsh/p10k.zsh
-      fi
-    '';
-
-    initExtra = let
+    initContent = let
       zshrc = fileContents "${mod}/zsh/zshrc";
 
       sources = with pkgs; [
