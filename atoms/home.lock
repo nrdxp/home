@@ -3,7 +3,7 @@ version = 1
 [[deps]]
 name = "nixpkgs"
 url = "https://github.com/nixos/nixpkgs.git"
-rev = "69b9a8c860bdbb977adfa9c5e817ccb717884182"
+rev = "b1bebd0fe266bbd1820019612ead889e96a8fa2d"
 
 [[deps]]
 id = "term"
@@ -18,5 +18,5 @@ version = "0.1.0"
 [[deps]]
 name = "hm-config"
 url = "https://github.com/nix-community/home-manager.git"
-rev = "e526fd2b1a40e4ca0b5e07e87b8c960281c67412"
+rev = "ae755329092c87369b9e9a1510a8cf1ce2b1c708"
 path = "modules"
