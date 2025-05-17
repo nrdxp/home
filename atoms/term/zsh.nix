@@ -21,6 +21,8 @@ in {
       in "${alt_c_cmd}/bin/cdr-skim.zsh";
       SKIM_DEFAULT_COMMAND = fd;
       SKIM_CTRL_T_COMMAND = fd;
+      SKIM_TMUX_OPTS = "center,40%";
+      SKIM_TMUX_HEIGHT = "100%";
     };
 
     shellAliases = {
