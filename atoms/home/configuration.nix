@@ -3,25 +3,28 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "nrd";
   home.homeDirectory = "/var/home/nrd";
   nixpkgs.config.allowUnfree = true;
 
-  imports = let
-    inherit (get) term wm;
-  in [
-    term.helix
-    term.git
-    term.tmux
-    term.aliases
-    term.zsh
-    term.utils
-    term.fonts
-    wm.hyprland
-  ];
+  imports =
+    let
+      inherit (get) term wm;
+    in
+    [
+      term.helix
+      term.git
+      term.tmux
+      term.aliases
+      term.zsh
+      term.utils
+      term.fonts
+      wm.hyprland
+    ];
 
   nix.nixPath = [
     "nixpkgs=${pkgs.path}"
@@ -34,14 +37,12 @@
 
   # link application desktop files to the user local directory
   home.activation = {
-    linkDesktopApplications =
-      lib.hm.dag.entryAfter ["writeBoundary"]
-      ''
-        mkdir -p ~/.local/share/applications
-        for app in ~/.nix-profile/share/applications/*; do
-          ln -sf $app ~/.local/share/applications/
-        done
-      '';
+    linkDesktopApplications = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      mkdir -p ~/.local/share/applications
+      for app in ~/.nix-profile/share/applications/*; do
+        ln -sf $app ~/.local/share/applications/
+      done
+    '';
   };
 
   # This value determines the Home Manager release that your configuration is

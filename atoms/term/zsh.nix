@@ -2,28 +2,34 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (builtins) concatStringsSep;
 
   inherit (lib) fileContents;
-in {
+in
+{
   home = {
-    sessionVariables = let
-      fd = "${pkgs.fd}/bin/fd -H";
-    in {
-      BAT_PAGER = "less";
-      SKIM_DEFAULT_OPTIONS = "--bind=alt-k:up,alt-j:down";
-      SKIM_ALT_C_COMMAND = let
-        alt_c_cmd = pkgs.writeScriptBin "cdr-skim.zsh" ''
-          #!${pkgs.zsh}/bin/zsh
-          ${fileContents "${mod}/zsh/cdr-skim.zsh"}
-        '';
-      in "${alt_c_cmd}/bin/cdr-skim.zsh";
-      SKIM_DEFAULT_COMMAND = fd;
-      SKIM_CTRL_T_COMMAND = fd;
-      SKIM_TMUX_OPTS = "center,40%";
-      SKIM_TMUX_HEIGHT = "100%";
-    };
+    sessionVariables =
+      let
+        fd = "${pkgs.fd}/bin/fd -H";
+      in
+      {
+        BAT_PAGER = "less";
+        SKIM_DEFAULT_OPTIONS = "--bind=alt-k:up,alt-j:down";
+        SKIM_ALT_C_COMMAND =
+          let
+            alt_c_cmd = pkgs.writeScriptBin "cdr-skim.zsh" ''
+              #!${pkgs.zsh}/bin/zsh
+              ${fileContents "${mod}/zsh/cdr-skim.zsh"}
+            '';
+          in
+          "${alt_c_cmd}/bin/cdr-skim.zsh";
+        SKIM_DEFAULT_COMMAND = fd;
+        SKIM_CTRL_T_COMMAND = fd;
+        SKIM_TMUX_OPTS = "center,40%";
+        SKIM_TMUX_HEIGHT = "100%";
+      };
 
     shellAliases = {
       cat = "${pkgs.bat}/bin/bat";
@@ -101,91 +107,103 @@ in {
 
     history.size = 10000;
 
-    initContent = let
-      zshrc = fileContents "${mod}/zsh/zshrc";
+    initContent =
+      let
+        zshrc = fileContents "${mod}/zsh/zshrc";
 
-      sources = with pkgs; [
-        "${mod}/zsh/cdr.zsh"
-        "${oh-my-zsh}/share/oh-my-zsh/plugins/sudo/sudo.plugin.zsh"
-        "${oh-my-zsh}/share/oh-my-zsh/plugins/extract/extract.plugin.zsh"
-        "${oh-my-zsh}/share/oh-my-zsh/plugins/urltools/urltools.plugin.zsh"
-        "${zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh"
-        "${zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-        "${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
-      ];
+        sources = with pkgs; [
+          "${mod}/zsh/cdr.zsh"
+          "${oh-my-zsh}/share/oh-my-zsh/plugins/sudo/sudo.plugin.zsh"
+          "${oh-my-zsh}/share/oh-my-zsh/plugins/extract/extract.plugin.zsh"
+          "${oh-my-zsh}/share/oh-my-zsh/plugins/urltools/urltools.plugin.zsh"
+          "${zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh"
+          "${zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+          "${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
+        ];
 
-      source = map (source: "source ${source}") sources;
+        source = map (source: "source ${source}") sources;
 
-      functions = pkgs.stdenv.mkDerivation {
-        name = "zsh-functions";
-        src = "${mod}/zsh/functions";
+        functions = pkgs.stdenv.mkDerivation {
+          name = "zsh-functions";
+          src = "${mod}/zsh/functions";
 
-        ripgrep = "${pkgs.ripgrep}";
-        man = "${pkgs.man}";
-        exa = "${pkgs.eza or pkgs.exa}";
+          ripgrep = "${pkgs.ripgrep}";
+          man = "${pkgs.man}";
+          exa = "${pkgs.eza or pkgs.exa}";
 
-        installPhase = let
-          basename = "\${file##*/}";
-        in ''
-          mkdir $out
+          installPhase =
+            let
+              basename = "\${file##*/}";
+            in
+            ''
+              mkdir $out
 
-          for file in $src/*; do
-            substituteAll $file $out/${basename}
-            chmod 755 $out/${basename}
-          done
-        '';
-      };
-
-      plugins = concatStringsSep "\n" source;
-
-      completions = let
-        completionCommand = pkg: args: let
-          cmd = pkg.meta.mainProgram or pkg.pname;
-        in
-          pkgs.runCommandNoCC "zsh-${cmd}-completion" {}
-          ''
-            mkdir -p $out/share/zsh/vendor-completions
-            ${pkg}/bin/${cmd} ${toString args} > $out/share/zsh/vendor-completions/_${cmd}
-          '';
-      in
-        pkgs.symlinkJoin {
-          name = "user-zsh-completions";
-          paths = map (drv: "${drv}/share/zsh") (with pkgs; [
-            kubectl
-            cargo
-            colmena
-            zsh-completions
-            systemd
-            (completionCommand kubernetes-helm ["completion" "zsh"])
-          ]);
+              for file in $src/*; do
+                substituteAll $file $out/${basename}
+                chmod 755 $out/${basename}
+              done
+            '';
         };
 
-      bashCompletion = ''
-        autoload -U bashcompinit && bashcompinit
-        complete -o nospace -C ${pkgs.awscli}/bin/aws_completer aws
-        complete -o nospace -C ${pkgs.opentofu}/bin/tofu tofu
-        complete -o nospace -C ${pkgs.opentofu}/bin/tofu terragrunt
+        plugins = concatStringsSep "\n" source;
+
+        completions =
+          let
+            completionCommand =
+              pkg: args:
+              let
+                cmd = pkg.meta.mainProgram or pkg.pname;
+              in
+              pkgs.runCommandNoCC "zsh-${cmd}-completion" { } ''
+                mkdir -p $out/share/zsh/vendor-completions
+                ${pkg}/bin/${cmd} ${toString args} > $out/share/zsh/vendor-completions/_${cmd}
+              '';
+          in
+          pkgs.symlinkJoin {
+            name = "user-zsh-completions";
+            paths = map (drv: "${drv}/share/zsh") (
+              with pkgs;
+              [
+                kubectl
+                cargo
+                colmena
+                zsh-completions
+                systemd
+                (completionCommand kubernetes-helm [
+                  "completion"
+                  "zsh"
+                ])
+              ]
+            );
+          };
+
+        bashCompletion = ''
+          autoload -U bashcompinit && bashcompinit
+          complete -o nospace -C ${pkgs.awscli}/bin/aws_completer aws
+          complete -o nospace -C ${pkgs.opentofu}/bin/tofu tofu
+          complete -o nospace -C ${pkgs.opentofu}/bin/tofu terragrunt
+        '';
+      in
+      ''
+        fpath+=( ${functions} ${completions}/{site-functions,vendor-completions} )
+
+        ${plugins}
+
+        autoload -Uz ${functions}/*(:t)
+
+        ${zshrc}
+
+        source "${pkgs.zsh-better-npm-completion}/share/zsh-better-npm-completion"
+
+        ${bashCompletion}
+
+        eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
+        eval $(${pkgs.gitAndTools.hub}/bin/hub alias -s)
+        source ${pkgs.skim}/share/skim/key-bindings.zsh
+        source ${"${mod}/zsh/cd-fix.zsh"}
+
+        # needs to remain at bottom so as not to be overwritten
+        bindkey jj vi-cmd-mode
       '';
-    in ''
-      fpath+=( ${functions} ${completions}/{site-functions,vendor-completions} )
-
-      ${plugins}
-
-      autoload -Uz ${functions}/*(:t)
-
-      ${zshrc}
-
-      source "${pkgs.zsh-better-npm-completion}/share/zsh-better-npm-completion"
-
-      ${bashCompletion}
-
-      eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
-      eval $(${pkgs.gitAndTools.hub}/bin/hub alias -s)
-      source ${pkgs.skim}/share/skim/key-bindings.zsh
-      source ${"${mod}/zsh/cd-fix.zsh"}
-
-      # needs to remain at bottom so as not to be overwritten
-      bindkey jj vi-cmd-mode
-    '';
   };
 }

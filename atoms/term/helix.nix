@@ -7,7 +7,10 @@
   programs.helix.languages = {
     language = [
       {
-        language-servers = ["marksman" "ltex"];
+        language-servers = [
+          "marksman"
+          "ltex"
+        ];
         name = "markdown";
       }
     ];
@@ -15,8 +18,12 @@
       ltex = {
         command = "ltex-ls";
         config.ltex = {
-          dictionary = {en-US = [];};
-          disabledRules = {en-US = ["PROFANITY"];};
+          dictionary = {
+            en-US = [ ];
+          };
+          disabledRules = {
+            en-US = [ "PROFANITY" ];
+          };
         };
       };
       yaml-language-server.config.yaml.keyOrdering = false;
@@ -56,7 +63,10 @@
       C-b = "buffer_picker";
       C-A-n = ":bn";
       C-A-p = ":bp";
-      y = ["yank" "yank_joined_to_clipboard"];
+      y = [
+        "yank"
+        "yank_joined_to_clipboard"
+      ];
     };
     keys.insert.j.j = "normal_mode";
   };

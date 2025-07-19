@@ -1,8 +1,10 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   nerdfonts = pkgs.nerdfonts.override {
-    fonts = ["DejaVuSansMono"];
+    fonts = [ "DejaVuSansMono" ];
   };
-in {
+in
+{
   fonts.fontconfig.enable = true;
   home.packages = [
     pkgs.nerd-fonts.dejavu-sans-mono
@@ -17,6 +19,6 @@ in {
       "DejaVu Sans Mono for Powerline"
     ];
 
-    sansSerif = ["DejaVu Sans"];
+    sansSerif = [ "DejaVu Sans" ];
   };
 }

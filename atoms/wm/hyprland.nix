@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   wallpaper = "${pkgs.adapta-backgrounds}/share/backgrounds/adapta/tealized.jpg";
   wofi = pkgs.wofi.overrideAttrs (_: {
     preFixup = ''
@@ -12,8 +13,9 @@
       )
     '';
   });
-  wofi-emoji = pkgs.wofi-emoji.override {inherit wofi;};
-in {
+  wofi-emoji = pkgs.wofi-emoji.override { inherit wofi; };
+in
+{
   home.packages = [
     pkgs.grim
     pkgs.slurp
@@ -52,13 +54,17 @@ in {
     wallpaper = ",${wallpaper}";
   };
   xdg.configFile."hypr/hyprland.conf".text = ''
-    exec-once = ${toString (lib.intersperse "&" [
-      "waybar"
-      "kitty"
-      "qutebrowser"
-      "systemctl --user start hypridle"
-      "systemctl --user start hyprpaper"
-    ])}
+    exec-once = ${
+      toString (
+        lib.intersperse "&" [
+          "waybar"
+          "kitty"
+          "qutebrowser"
+          "systemctl --user start hypridle"
+          "systemctl --user start hyprpaper"
+        ]
+      )
+    }
 
     source = ${mod}/hyprland.conf
 

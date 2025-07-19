@@ -5,6 +5,8 @@ let
 
   # atom = import /var/home/nrd/git/github.com/ekala-project/atom;
 
-  home = (import "${atom}/atom-nix/core/importAtom.nix") {remoteUrl = "https://github.com/nrdxp/home.git";} (./atoms + "/home@.toml");
+  home = (import "${atom}/atom-nix/core/importAtom.nix") {
+    remoteUrl = "https://github.com/nrdxp/home.git";
+  } (./atoms + "/home@.toml");
 in
-  home
+home
