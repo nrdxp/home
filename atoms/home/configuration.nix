@@ -29,7 +29,7 @@
 
   nix.registry.pkgs.to = {
     type = "path";
-    path = pkgs.path;
+    path = toString pkgs.path;
   };
 
   # link application desktop files to the user local directory
