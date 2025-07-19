@@ -1,12 +1,10 @@
 let
-  atom = builtins.fetchGit {
-    url = "https://github.com/ekala-project/atom";
-    rev = "f56d90e0b80f4b717ded340b89267987cd83c59c";
-    shallow = true;
+  atom = fetchTarball {
+    url = "https://github.com/ekala-project/atom/archive/6a0c19bdb182327abef4d06fb1f5541e27cfe797.tar.gz";
   };
 
   # atom = import /var/home/nrd/git/github.com/ekala-project/atom;
 
-  home = (import "${atom}/atom-nix/core/importAtom.nix") {} (./atoms + "/home@.toml");
+  home = (import "${atom}/atom-nix/core/importAtom.nix") {remoteUrl = "https://github.com/nrdxp/home.git";} (./atoms + "/home@.toml");
 in
   home

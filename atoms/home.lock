@@ -1,22 +1,27 @@
 version = 1
 
 [[deps]]
-name = "nixpkgs"
-url = "https://github.com/nixos/nixpkgs.git"
-rev = "b1bebd0fe266bbd1820019612ead889e96a8fa2d"
-
-[[deps]]
 id = "term"
 version = "0.1.0"
-rev = "1b904ce97a160a3a1ad6b9f2cf6bcdbd41d71869"
-url = "https://github.com/nrdxp/home.git"
+rev = "5c8f3aa4ae34435d945308facec935ccc7605a86"
+type = "atom"
 
 [[deps]]
 id = "wm"
 version = "0.1.0"
+rev = "c2f4357ab8231867aa5a9539dc3d0660c799bbd5"
+type = "atom"
+
+[[deps]]
+name = "nixpkgs"
+url = "https://github.com/NixOS/nixpkgs/archive/6e987485eb2c77e5dcc5af4e3c70843711ef9251.tar.gz"
+type = "pin+tar"
+checksum = "sha256:1yj6j84a92848g2xv8q1pzn6c0b5ivarf01l0nii6r8f1rf1zb24"
 
 [[deps]]
 name = "hm-config"
 url = "https://github.com/nix-community/home-manager.git"
-rev = "ae755329092c87369b9e9a1510a8cf1ce2b1c708"
+rev = "d0300c8808e41da81d6edfc202f3d3833c157daf"
 path = "modules"
+type = "pin+git"
+
