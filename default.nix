@@ -3,10 +3,16 @@ let
     url = "https://github.com/ekala-project/atom/archive/6a0c19bdb182327abef4d06fb1f5541e27cfe797.tar.gz";
   };
 
-  # atom = import /var/home/nrd/git/github.com/ekala-project/atom;
+  remoteUrl = "https://github.com/nrdxp/home.git";
+  # testPublished = fetchGit {
+  #   url = remoteUrl;
+  #   rev = "f19aa4fb4dbb4846ae93c9a9ec23fdd70d2a193f";
+  #   ref = "refs/eka/atoms/home/0.1.1";
+  #   shallow = true;
+  # };
 
   home = (import "${atom}/atom-nix/core/importAtom.nix") {
-    remoteUrl = "https://github.com/nrdxp/home.git";
+    inherit remoteUrl;
   } (./atoms + "/home@.toml");
 in
 home
