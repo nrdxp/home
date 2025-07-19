@@ -15,7 +15,7 @@ type = "atom"
 [[deps]]
 id = "nix"
 version = "0.1.1"
-rev = ""
+rev = "bf6175b46cb385c304133c5fc01a118ccc5de882"
 type = "atom"
 
 [[deps]]
