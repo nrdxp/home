@@ -1,7 +1,9 @@
 {
-  pkgs = get.nixpkgs { };
-  Main = get.hm-config { inherit (mod) pkgs configuration; };
-  Shell = mod.pkgs.mkShell {
+  Main = get.hm-config {
+    inherit (mod) configuration;
+    inherit (get.nix) pkgs;
+  };
+  Shell = get.nix.pkgs.mkShell {
     packages = with mod.pkgs; [
       treefmt
       alejandra

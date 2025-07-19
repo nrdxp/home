@@ -1,0 +1,7 @@
+version = 1
+
+[[deps]]
+name = "nixpkgs"
+url = "https://github.com/NixOS/nixpkgs/archive/6e987485eb2c77e5dcc5af4e3c70843711ef9251.tar.gz"
+type = "pin+tar"
+checksum = "sha256:1yj6j84a92848g2xv8q1pzn6c0b5ivarf01l0nii6r8f1rf1zb24"
