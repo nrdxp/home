@@ -8,23 +8,10 @@
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "nrd";
-  home.homeDirectory = "/var/home/nrd";
+  home.homeDirectory = lib.mkDefault "/var/home/nrd";
   nixpkgs.config.allowUnfree = true;
 
-  imports =
-    let
-      inherit (from) term wm;
-    in
-    [
-      term.helix
-      term.git
-      term.tmux
-      term.aliases
-      term.zsh
-      term.utils
-      term.fonts
-      wm.hyprland
-    ];
+  imports = mod.defaultImports;
 
   nix.nixPath = [
     "nixpkgs=${pkgs.path}"
