@@ -5,7 +5,7 @@
     inherit (from.nix) pkgs;
   };
   Shell = from.nix.pkgs.mkShell {
-    packages = with mod.pkgs; [
+    packages = with from.nix.pkgs; [
       treefmt
       alejandra
       shfmt
