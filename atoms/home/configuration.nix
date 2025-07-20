@@ -13,7 +13,7 @@
 
   imports =
     let
-      inherit (get) term wm;
+      inherit (from) term wm;
     in
     [
       term.helix

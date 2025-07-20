@@ -1,6 +1,6 @@
 let
   atom = fetchTarball {
-    url = "https://github.com/ekala-project/atom/archive/6a0c19bdb182327abef4d06fb1f5541e27cfe797.tar.gz";
+    url = "https://github.com/ekala-project/atom/archive/568552c52f0e209f3978c5af7d686b952117d6e1.tar.gz";
   };
 
   remoteUrl = "https://github.com/nrdxp/home.git";

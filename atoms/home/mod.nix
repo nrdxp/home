@@ -1,9 +1,10 @@
 {
-  Main = get.hm-config {
+  Hello = from.nix.hello;
+  Main = from.hm-config {
     inherit (mod) configuration;
-    inherit (get.nix) pkgs;
+    inherit (from.nix) pkgs;
   };
-  Shell = get.nix.pkgs.mkShell {
+  Shell = from.nix.pkgs.mkShell {
     packages = with mod.pkgs; [
       treefmt
       alejandra
