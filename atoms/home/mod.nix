@@ -1,5 +1,4 @@
 {
-  Hello = from.nix.hello;
   Main = from.hm-config {
     inherit (mod) configuration;
     inherit (from.nix) pkgs;

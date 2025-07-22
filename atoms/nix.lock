@@ -5,3 +5,16 @@ name = "nixpkgs"
 url = "https://github.com/NixOS/nixpkgs/archive/6e987485eb2c77e5dcc5af4e3c70843711ef9251.tar.gz"
 type = "pin+tar"
 checksum = "sha256:1yj6j84a92848g2xv8q1pzn6c0b5ivarf01l0nii6r8f1rf1zb24"
+
+[[srcs]]
+name = "registry"
+url = "https://raw.githubusercontent.com/NixOS/flake-registry/refs/heads/master/flake-registry.json"
+type = "build"
+checksum = "sha256-hClMprWwiEQe7mUUToXZAR5wbhoVFi+UuqLL2K/eIPw="
+
+[[deps]]
+name = "hm-module"
+url = "https://github.com/nix-community/home-manager.git"
+rev = "d0300c8808e41da81d6edfc202f3d3833c157daf"
+path = "nixos"
+type = "pin+git"

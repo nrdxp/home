@@ -14,5 +14,10 @@ let
   home = (import "${atom}/atom-nix/core/importAtom.nix") {
     inherit remoteUrl;
   } (./atoms + "/home@.toml");
+  hosts = (import "${atom}/atom-nix/core/importAtom.nix") {
+    inherit remoteUrl;
+  } (./atoms + "/hosts@.toml");
 in
-home
+{
+  inherit home hosts;
+}

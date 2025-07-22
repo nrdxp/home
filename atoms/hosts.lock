@@ -1,0 +1,45 @@
+version = 1
+
+[[deps]]
+id = "nix"
+version = "0.1.2"
+rev = "bca8295431846ed43bdbe9d95a8b8958785245e6"
+type = "atom"
+
+[[deps]]
+id = "home"
+version = "0.1.4"
+rev = "a460f02d145b870bb4f8762fd7a163afee68512e"
+type = "atom"
+
+[[deps]]
+id = "term"
+version = "0.1.1"
+rev = "e4f0949e04edfeb30a8e4c4df80def1e5012828f"
+type = "atom"
+
+[[deps]]
+id = "network"
+version = "0.1.0"
+path = "os/network"
+type = "atom"
+
+[[deps]]
+id = "virt"
+version = "0.1.0"
+path = "os/virt"
+type = "atom"
+
+[[deps]]
+name = "eval-config"
+path = "nixos/lib/eval-config.nix"
+from = "nix"
+get = "nixpkgs"
+type = "pin"
+
+[[deps]]
+name = "microvm-module"
+url = "https://github.com/microvm-nix/microvm.nix/archive/80bddbd51fda2c71d83449f5927e4d72a2eb0d89.tar.gz"
+checksum = "sha256:0lkjn8q6p0c18acj43pj1cbiyixnf98wvkbgppr5vz73qkypii2g"
+path = "nixos-modules/host"
+type = "pin+tar"

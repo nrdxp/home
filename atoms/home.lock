@@ -20,8 +20,8 @@ type = "atom"
 
 [[deps]]
 name = "hm-config"
-url = "https://github.com/nix-community/home-manager.git"
-rev = "d0300c8808e41da81d6edfc202f3d3833c157daf"
+from = "nix"
+get = "hm-module"
 path = "modules"
-type = "pin+git"
+type = "pin"
 
