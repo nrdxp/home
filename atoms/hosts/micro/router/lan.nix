@@ -21,6 +21,17 @@ in
         DHCPServer = true;
         IPv6SendRA = true;
         LinkLocalAddressing = "ipv6";
+        DHCPPrefixDelegation = true; # Delegate sub-prefixes from WAN's acquired PD
+      };
+      ipv6SendRAConfig = {
+        Managed = true;
+        OtherInformation = true;
+        RouterLifetimeSec = 1800;
+      };
+      dhcpPrefixDelegationConfig = {
+        SubnetId = "0";
+        UplinkInterface = "wan";
+        Announce = true;
       };
       # dhcp server
       dhcpServerConfig.DNS = "_server_address";
@@ -94,13 +105,28 @@ in
     53
   ];
 
+  # ipv6 rules for local network
+  networking.firewall = {
+    checkReversePath = "loose"; # Helps with asymmetric routing in VMs
+
+    extraForwardRules = ''
+      iifname "br0" oifname "wan" accept
+      iifname "wan" oifname "br0" ct state {established, related} accept
+      ip6 nexthdr icmpv6 icmpv6 type { destination-unreachable, packet-too-big, time-exceeded, parameter-problem } accept
+    '';
+
+    extraInputRules = ''
+      iifname "br0" ip6 nexthdr icmpv6 icmpv6 type { nd-router-solicit, nd-router-advert, nd-neighbor-solicit, nd-neighbor-advert } accept
+      iifname "wan" ip6 nexthdr icmpv6 icmpv6 type { destination-unreachable, packet-too-big, time-exceeded, parameter-problem, echo-request, echo-reply } accept
+      ct state invalid drop
+    '';
+  };
+
   # NAT config
   networking.nat = {
     enable = true;
-    enableIPv6 = true;
     externalInterface = "wan";
     internalIPs = [ cidr ];
-    internalIPv6s = [ cidr6 ];
   };
 
   # dns config

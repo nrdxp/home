@@ -5,6 +5,12 @@
     mod.lan
     # mod.qos
   ];
+  boot.kernel.sysctl = {
+    "net.ipv6.conf.all.forwarding" = 1;
+    "net.ipv6.conf.default.forwarding" = 1;
+    "net.ipv6.conf.all.rp_filter" = 0;
+    "net.ipv6.conf.wan.rp_filter" = 0;
+  };
   nix.enable = false;
 
   networking.hostName = "router";

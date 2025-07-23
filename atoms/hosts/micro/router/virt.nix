@@ -11,7 +11,7 @@ in
     networks."20-lan" = {
       matchConfig.MACAddress = mac;
       networkConfig = {
-        IPv6AcceptRA = true;
+        IPv6AcceptRA = false;
         DHCP = "no";
         Bridge = "br0";
       };

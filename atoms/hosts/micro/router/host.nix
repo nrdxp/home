@@ -27,10 +27,18 @@
     enable = true;
     networks."10-net0" = {
       matchConfig.Name = "net0";
-      networkConfig.DHCP = "yes";
+      networkConfig = {
+        DHCP = "yes";
+        IPv6AcceptRA = true;
+      };
+
+      dhcpV6Config = {
+        UseDNS = "no";
+        WithoutRA = "solicit"; # Fallback if RA delayed
+      };
+
       # stick with resolved config on this machine
       dhcpV4Config.UseDNS = "no";
-      dhcpV6Config.UseDNS = "no";
       extraConfig = ''
         [IPv6AcceptRA]
         UseDNS = no
