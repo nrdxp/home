@@ -35,7 +35,7 @@
   nix.settings.max-jobs = 32;
   nix.settings.cores = 64;
   nix.nrBuildUsers = 0;
-  nix.settings.secret-key-files = "/run/nix-key";
+  nix.settings.secret-key-files = "/run/keys/nix";
 
   fileSystems."/" = {
     device = "UUID=3ffceb6b-1eab-4e44-8c80-ceb1233dd4f8";

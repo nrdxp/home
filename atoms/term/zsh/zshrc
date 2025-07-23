@@ -1,7 +1,3 @@
-# fzf-tab config
-zstyle ':fzf-tab:*' fzf-command sk
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-
 # useful functions
 autoload -Uz zmv zcalc zargs url-quote-magic bracketed-paste-magic
 zle -N self-insert url-quote-magic

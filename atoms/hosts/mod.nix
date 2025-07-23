@@ -25,12 +25,12 @@
           from.term.utils
           from.term.fonts
         ];
-      };
 
-      programs.zsh.interactiveShellInit = lib.mkAfter ''
-        hash -d \
-          xp=~hub/nrdxp
-      '';
+        programs.zsh.initContent = lib.mkAfter ''
+          hash -d \
+            xp=~hub/nrdxp
+        '';
+      };
 
       systemd.tmpfiles.rules = [
         "L+ /etc/nixos - - - - /srv/git/github.com/nrdxp/nrdos"
