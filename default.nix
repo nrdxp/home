@@ -1,6 +1,6 @@
 let
   atom = fetchTarball {
-    url = "https://github.com/ekala-project/atom/archive/568552c52f0e209f3978c5af7d686b952117d6e1.tar.gz";
+    url = "https://github.com/ekala-project/atom/archive/8069028758c56d5f090ac48c70d22806c6910197.tar.gz";
   };
 
   remoteUrl = "https://github.com/nrdxp/home.git";
@@ -13,10 +13,10 @@ let
 
   home = (import "${atom}/atom-nix/core/importAtom.nix") {
     inherit remoteUrl;
-  } (./atoms + "/home@.toml");
+  } ./atoms/home;
   hosts = (import "${atom}/atom-nix/core/importAtom.nix") {
     inherit remoteUrl;
-  } (./atoms + "/hosts@.toml");
+  } ./atoms/hosts;
 in
 {
   inherit home hosts;
