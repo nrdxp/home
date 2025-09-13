@@ -22,6 +22,8 @@
       alejandra
       shfmt
       taplo
+      nil
+      colmena
       nodePackages.prettier
     ];
   };
