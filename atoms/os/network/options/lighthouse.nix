@@ -2,11 +2,9 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   cfg = config.do.lighthouse;
-in
-{
+in {
   options.do.lighthouse = {
     useDNS = lib.mkOption {
       type = lib.types.bool;
@@ -37,11 +35,12 @@ in
     };
     interface = lib.mkOption {
       type = lib.types.str;
-      default =
-        let
-          inherit (config.services.nebula.networks.${cfg.network}.tun) device;
-        in
-        if device != null then device else "nebula.${cfg.network}";
+      default = let
+        inherit (config.services.nebula.networks.${cfg.network}.tun) device;
+      in
+        if device != null
+        then device
+        else "nebula.${cfg.network}";
       description = ''
         Name of the nebula interface
       '';
@@ -50,22 +49,23 @@ in
   config = {
     services.nebula.networks.${cfg.network} = {
       isLighthouse = true;
-      firewall.inbound = [
-        {
-          description = "SSH Access";
-          groups = [
-            "t:service:ssh"
-          ];
-          port = 22;
-          proto = "tcp";
-        }
-      ]
-      ++ (lib.optional cfg.useDNS {
-        description = "DNS";
-        host = "any";
-        port = 53;
-        proto = "udp";
-      });
+      firewall.inbound =
+        [
+          {
+            description = "SSH Access";
+            groups = [
+              "t:service:ssh"
+            ];
+            port = 22;
+            proto = "tcp";
+          }
+        ]
+        ++ (lib.optional cfg.useDNS {
+          description = "DNS";
+          host = "any";
+          port = 53;
+          proto = "udp";
+        });
       settings.lighthouse.serve_dns = cfg.useDNS;
       settings.relay.am_relay = cfg.useAsRelay;
       settings.lighthouse.dns = {
@@ -73,7 +73,7 @@ in
         port = 53;
       };
     };
-    networking.firewall.interfaces.${cfg.interface}.allowedUDPPorts = lib.mkIf cfg.useDNS [ 53 ];
+    networking.firewall.interfaces.${cfg.interface}.allowedUDPPorts = lib.mkIf cfg.useDNS [53];
     systemd.services."nebula@${cfg.network}" = lib.mkIf cfg.useDNS {
       serviceConfig.AmbientCapabilities = lib.mkForce [
         "CAP_NET_BIND_SERVICE"

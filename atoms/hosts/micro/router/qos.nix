@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   services.fireqos.enable = true;
   services.fireqos.config = ''
     interface wan world-in input rate 105Mbit ethernet
@@ -30,7 +29,7 @@
       class default commit 15%
         match all
   '';
-  systemd.services.fireqos.wantedBy = [ "network-online.target" ];
-  systemd.services.fireqos.after = lib.mkForce [ "sys-subsystem-net-devices-wan.device" ];
-  systemd.services.fireqos.bindsTo = [ "sys-subsystem-net-devices-wan.device" ];
+  systemd.services.fireqos.wantedBy = ["network-online.target"];
+  systemd.services.fireqos.after = lib.mkForce ["sys-subsystem-net-devices-wan.device"];
+  systemd.services.fireqos.bindsTo = ["sys-subsystem-net-devices-wan.device"];
 }

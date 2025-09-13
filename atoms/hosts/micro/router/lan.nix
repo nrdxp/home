@@ -5,8 +5,7 @@ let
   routerIP6 = "${subnet6}::1";
   cidr = "${subnet}.0/24";
   cidr6 = "${subnet6}::/64";
-in
-{
+in {
   systemd.network = {
     netdevs."10-br0".netdevConfig = {
       Kind = "bridge";
@@ -99,7 +98,7 @@ in
       to = 68;
     }
   ];
-  networking.firewall.interfaces.br0.allowedUDPPorts = [ 53 ];
+  networking.firewall.interfaces.br0.allowedUDPPorts = [53];
   networking.firewall.interfaces.br0.allowedTCPPorts = [
     22
     53
@@ -127,7 +126,7 @@ in
   networking.nat = {
     enable = true;
     externalInterface = "wan";
-    internalIPs = [ cidr ];
+    internalIPs = [cidr];
   };
 
   # dns config

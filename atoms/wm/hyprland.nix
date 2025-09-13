@@ -2,8 +2,7 @@
   pkgs,
   lib,
   ...
-}:
-let
+}: let
   wallpaper = "${pkgs.adapta-backgrounds}/share/backgrounds/adapta/tealized.jpg";
   wofi = pkgs.wofi.overrideAttrs (_: {
     preFixup = ''
@@ -13,9 +12,8 @@ let
       )
     '';
   });
-  wofi-emoji = pkgs.wofi-emoji.override { inherit wofi; };
-in
-{
+  wofi-emoji = pkgs.wofi-emoji.override {inherit wofi;};
+in {
   home.packages = [
     pkgs.grim
     pkgs.slurp

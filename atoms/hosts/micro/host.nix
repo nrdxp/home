@@ -17,10 +17,10 @@
     "ahci"
     "usbhid"
   ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = ["kvm-amd"];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   services.fwupd.enable = true;
   security.sudo.wheelNeedsPassword = false;
@@ -45,7 +45,7 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/53D3-8A01";
     fsType = "vfat";
-    options = [ "umask=0077" ];
+    options = ["umask=0077"];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -67,17 +67,15 @@
 
   services.fstrim.enable = true;
 
-  systemd.services.taskspooler =
-    let
-      socket = "/var/run/socket-ts";
-    in
-    {
-      environment.TS_SOCKET = socket;
-      serviceConfig.ExecStart = "${pkgs.taskspooler}/bin/ts -S8";
-      serviceConfig.Type = "forking";
-      serviceConfig.ExecStartPost = "${pkgs.coreutils}/bin/chmod 777 ${socket}";
-      wantedBy = [ "multi-user.target" ];
-    };
+  systemd.services.taskspooler = let
+    socket = "/var/run/socket-ts";
+  in {
+    environment.TS_SOCKET = socket;
+    serviceConfig.ExecStart = "${pkgs.taskspooler}/bin/ts -S8";
+    serviceConfig.Type = "forking";
+    serviceConfig.ExecStartPost = "${pkgs.coreutils}/bin/chmod 777 ${socket}";
+    wantedBy = ["multi-user.target"];
+  };
 
   system.stateVersion = "24.05";
 }

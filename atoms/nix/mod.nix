@@ -1,5 +1,5 @@
 {
-  Pkgs = from.nixpkgs { };
+  Pkgs = from.nixpkgs {};
 
   Os-module = {
     imports = [
@@ -13,7 +13,6 @@
   hm-module = {
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
-    imports = [ from.hm-module ];
+    imports = [from.hm-module];
   };
-
 }

@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   networking.nameservers = [
     "1.1.1.2#security.cloudflare-dns.com"
     "2606:4700:4700::1112#security.cloudflare-dns.com"

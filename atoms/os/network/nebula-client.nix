@@ -1,5 +1,5 @@
 {
-  imports = [ mod.nebula ];
+  imports = [mod.nebula];
   services.nebula.networks.nrd = {
     lighthouses = [
       "10.20.0.1"

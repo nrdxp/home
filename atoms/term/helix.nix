@@ -19,10 +19,10 @@
         command = "ltex-ls";
         config.ltex = {
           dictionary = {
-            en-US = [ ];
+            en-US = [];
           };
           disabledRules = {
-            en-US = [ "PROFANITY" ];
+            en-US = ["PROFANITY"];
           };
         };
       };

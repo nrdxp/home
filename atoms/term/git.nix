@@ -1,9 +1,8 @@
 {
   imports = [
     (
-      { pkgs, ... }:
-      {
-        home.packages = [ pkgs.ghq ];
+      {pkgs, ...}: {
+        home.packages = [pkgs.ghq];
       }
     )
   ];

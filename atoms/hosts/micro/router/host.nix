@@ -1,5 +1,8 @@
-{ pkgs, config, ... }:
 {
+  pkgs,
+  config,
+  ...
+}: {
   boot.kernelParams = [
     "amd_iommu=on"
     "iommu=pt"
@@ -21,7 +24,7 @@
   boot.extraModprobeConfig = ''
     options vfio-pci ids=8086:1563
   '';
-  microvm.autostart = [ "router" ];
+  microvm.autostart = ["router"];
   networking.useNetworkd = true;
   systemd.network = {
     enable = true;
@@ -47,8 +50,8 @@
   };
   microvm.vms.router = {
     config = {
-      imports = [ mod.vm ];
-      system = { inherit (config.system) stateVersion; };
+      imports = [mod.vm];
+      system = {inherit (config.system) stateVersion;};
     };
   };
 }

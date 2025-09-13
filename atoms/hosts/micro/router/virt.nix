@@ -1,7 +1,6 @@
 let
   mac = "02:00:00:00:00:01";
-in
-{
+in {
   systemd.network = {
     links."10-virt" = {
       matchConfig.MACAddress = mac;

@@ -1,11 +1,12 @@
-{ pkgs, lib, ... }:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   mac = "02:00:00:00:02:01";
   keys = "/run/keys/castopod";
   ip = "192.168.100.2";
-in
-
-{
+in {
   microvm = {
     hypervisor = "cloud-hypervisor";
     vcpu = 32;
@@ -79,7 +80,7 @@ in
   services.mysql = {
     enable = true;
     package = pkgs.mariadb;
-    ensureDatabases = [ "castopod" ];
+    ensureDatabases = ["castopod"];
   };
 
   services.redis.servers.castopod = {
@@ -99,8 +100,8 @@ in
 
   systemd.services.mariadb-setup = {
     description = "Set up MariaDB user and permissions for Castopod";
-    after = [ "mysql.service" ];
-    wantedBy = [ "multi-user.target" ];
+    after = ["mysql.service"];
+    wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;

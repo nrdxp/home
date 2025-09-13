@@ -10,8 +10,7 @@
     imports = [
       mod.options.qbittorrent
       (
-        { config, ... }:
-        {
+        {config, ...}: {
           systemd.tmpfiles.rules = [
             "L+ /home/nrd/torrents - - - - ${config.services.qbittorrent.dataDir}/.config/qBittorrent/downloads"
           ];
@@ -36,10 +35,8 @@
   Nebula = mod.nebula;
   Nebula-client = mod.nebula-client;
 
-  Wireguard =
-    { lib, ... }:
-    {
-      networking.wireguard.enable = true;
-      networking.firewall.checkReversePath = lib.mkForce false;
-    };
+  Wireguard = {lib, ...}: {
+    networking.wireguard.enable = true;
+    networking.firewall.checkReversePath = lib.mkForce false;
+  };
 }

@@ -2,13 +2,11 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   mac = "02:00:00:00:02:02";
   keys = "/run/keys/castopod";
   version = "1.13.5";
-in
-{
+in {
   microvm = {
     hypervisor = "cloud-hypervisor";
 
@@ -108,7 +106,7 @@ in
           finalImageTag = version;
         };
 
-        environmentFiles = [ "${keys}/env" ];
+        environmentFiles = ["${keys}/env"];
         environment = {
           CP_BASEURL = "https://thedeepdive.fm";
           CP_MEDIA_BASEURL = "https://pod.thedeepdive.fm";
@@ -147,8 +145,8 @@ in
         ports = [
           "8000:80"
         ];
-        dependsOn = [ "app" ];
-        extraOptions = [ ];
+        dependsOn = ["app"];
+        extraOptions = [];
       };
     };
   };

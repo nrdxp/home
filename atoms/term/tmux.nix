@@ -2,22 +2,19 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (builtins) readFile concatStringsSep;
 
   inherit (lib) removePrefix;
 
-  pluginConf =
-    plugins:
+  pluginConf = plugins:
     concatStringsSep "\n\n" (
       map (
-        plugin:
-        let
+        plugin: let
           name = removePrefix "tmuxplugin-" plugin.pname;
-        in
-        "run-shell ${plugin}/share/tmux-plugins/${name}/${name}.tmux"
-      ) plugins
+        in "run-shell ${plugin}/share/tmux-plugins/${name}/${name}.tmux"
+      )
+      plugins
     );
 
   plugins = with pkgs.tmuxPlugins; [
@@ -27,8 +24,7 @@ let
     yank
     vim-tmux-navigator
   ];
-in
-{
+in {
   home.shellAliases = {
     tx = "tmux new-session -A -s $USER";
   };

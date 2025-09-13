@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   networking.networkmanager = {
     enable = true;
     dns = lib.mkForce "systemd-resolved";
