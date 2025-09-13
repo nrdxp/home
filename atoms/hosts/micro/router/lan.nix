@@ -105,6 +105,7 @@ in
     53
   ];
 
+  networking.firewall.filterForward = true;
   # ipv6 rules for local network
   networking.firewall = {
     checkReversePath = "loose"; # Helps with asymmetric routing in VMs

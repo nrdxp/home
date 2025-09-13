@@ -3,11 +3,11 @@
   modulesPath,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     mod.router.host
+    mod.castopod.host
     mod.nebula
   ];
 
