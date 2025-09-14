@@ -11,13 +11,18 @@ let
       |> import "${atom}/atom-nix/core/importAtom.nix";
   in
     path: {
-      name = baseNameOf path;
+      name = let
+        config = builtins.fromTOML <| builtins.readFile <| path + "/atom.toml";
+      in
+        config.atom.id;
       value = Import path;
     };
 in
   builtins.listToAttrs
   <| map f [
-    ./atoms/home
-    ./atoms/nix
-    ./atoms/hosts
+    ./hm/usr
+    ./nix
+    ./hosts
+    ./dev
+    ./apps
   ]

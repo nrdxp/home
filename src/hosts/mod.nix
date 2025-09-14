@@ -14,15 +14,7 @@
     home-manager.users.nrd = {
       home.stateVersion = "25.05";
 
-      imports = [
-        from.term.helix
-        from.term.git
-        from.term.tmux
-        from.term.aliases
-        from.term.zsh
-        from.term.utils
-        from.term.fonts
-      ];
+      imports = from.users.modules;
 
       programs.zsh.initContent = lib.mkAfter ''
         hash -d \

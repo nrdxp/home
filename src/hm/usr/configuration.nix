@@ -10,7 +10,7 @@
   home.homeDirectory = lib.mkDefault "/var/home/nrd";
   nixpkgs.config.allowUnfree = true;
 
-  imports = mod.defaultImports;
+  imports = mod.modules ++ [from.wm.hyprland];
 
   nix.nixPath = [
     "nixpkgs=${pkgs.path}"

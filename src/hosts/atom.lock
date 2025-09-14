@@ -7,15 +7,10 @@ rev = "bca8295431846ed43bdbe9d95a8b8958785245e6"
 type = "atom"
 
 [[deps]]
-id = "home"
+id = "users"
+path = "hm/usr"
 version = "0.1.4"
 rev = "a460f02d145b870bb4f8762fd7a163afee68512e"
-type = "atom"
-
-[[deps]]
-id = "term"
-version = "0.1.1"
-rev = "e4f0949e04edfeb30a8e4c4df80def1e5012828f"
 type = "atom"
 
 [[deps]]
