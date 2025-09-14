@@ -4,8 +4,9 @@
     inherit (from.nix) pkgs;
   };
   Modules = let
-    inherit (from) term wm;
+    inherit (from) term nix;
   in [
+    nix.module
     term.helix
     term.git
     term.tmux

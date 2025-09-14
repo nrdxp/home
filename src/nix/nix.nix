@@ -4,9 +4,8 @@
   ...
 }: {
   nix = {
+    package = lib.mkDefault pkgs.nix;
     gc.automatic = lib.mkDefault true;
-    gc.dates = "weekly";
-    optimise.automatic = true;
 
     nixPath = [
       "nixpkgs=${toString pkgs.path}"
@@ -25,6 +24,7 @@
         "nix-command"
         "ca-derivations"
         "dynamic-derivations"
+        "pipe-operators"
       ];
       accept-flake-config = true;
       flake-registry = get.registry.src;
