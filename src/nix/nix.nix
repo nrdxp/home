@@ -9,7 +9,7 @@
     optimise.automatic = true;
 
     nixPath = [
-      "nixpkgs=${pkgs.path}"
+      "nixpkgs=${toString pkgs.path}"
       "nixos-config=/etc/nixos/configuration.nix"
     ];
 

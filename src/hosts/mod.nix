@@ -11,6 +11,12 @@
     users.defaultUserShell = pkgs.zsh;
     programs.zsh.enable = true;
 
+    nixpkgs.flake.setNixPath = false;
+    nixpkgs.flake.setFlakeRegistry = false;
+    nix = {
+      inherit (from.users.nrd.config.nix) registry;
+    };
+
     home-manager.users.nrd = {
       home.stateVersion = "25.05";
 

@@ -13,7 +13,7 @@
   imports = mod.modules ++ [from.wm.hyprland];
 
   nix.nixPath = [
-    "nixpkgs=${pkgs.path}"
+    "nixpkgs=${toString pkgs.path}"
   ];
 
   nix.registry.pkgs.to = {
