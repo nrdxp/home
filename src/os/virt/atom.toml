@@ -1,4 +1,4 @@
 [atom]
-id = "virt"
-version = "0.1.0"
+tag = "virt"
+version = "0.1.1"
 description = "NixOS Virtualisation Modules"
