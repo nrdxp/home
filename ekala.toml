@@ -1,5 +1,15 @@
 [set]
-packages = []
+packages = [
+  "at/nix",
+  "at/dev",
+  "at/apps",
+  "at/hm/term",
+  "at/hm/usr",
+  "at/hm/wm",
+  "at/os/network",
+  "at/os/virt",
+  "at/hosts",
+]
 
 [metadata]
 tags = []
