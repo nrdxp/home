@@ -7,12 +7,12 @@ in {
   };
   Modules = [
     nix.hm.module
-    # term.helix
-    # term.git
-    # term.tmux
-    # term.aliases
-    # term.zsh
-    # term.utils
-    # term.fonts
+    term.helix
+    term.git
+    term.tmux
+    term.aliases
+    term.zsh
+    term.utils
+    term.fonts
   ];
 }
