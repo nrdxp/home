@@ -8,7 +8,10 @@ mirrors = ["https://github.com/ekala-project/atom"]
 
 [sets.f9a488b7db85be544ff5c5aaaaf7af0eaee72ad5]
 tag = "home"
-mirrors = ["::"]
+mirrors = [
+    "::",
+    "https://github.com/nrdxp/home",
+]
 
 [locker]
 label = "nix-lock"
@@ -31,29 +34,37 @@ entry = "src"
 [[deps]]
 type = "atom"
 label = "network"
-version = "0.1.0-local"
+version = "0.1.0"
 set = "f9a488b7db85be544ff5c5aaaaf7af0eaee72ad5"
+rev = "828072c7e5fd94ea427b5ee922443d6737057daf"
+mirror = "https://github.com/nrdxp/home"
 id = "jbvq0l71m25scnmbaekc3s9tf74rk4kea3kq51jfn8ngigqa3km0"
 
 [[deps]]
 type = "atom"
 label = "nix"
-version = "0.1.0-local"
+version = "0.1.0"
 set = "f9a488b7db85be544ff5c5aaaaf7af0eaee72ad5"
+rev = "368058a97486092b6ad2ea3b078f6bdf49030e62"
+mirror = "https://github.com/nrdxp/home"
 id = "7rdvqdevk7v7nn96ehq775i3shdahg8psesqh1bnnra5hre1k3b0"
 
 [[deps]]
 type = "atom"
 label = "users"
-version = "0.1.0-local"
+version = "0.1.0"
 set = "f9a488b7db85be544ff5c5aaaaf7af0eaee72ad5"
+rev = "284e33af1e4a167438b4170bde444144a21f4c16"
+mirror = "https://github.com/nrdxp/home"
 id = "7u0jlgt992s4s8th83l84tt8ilc4cul861e5meatlsgt8ap14p90"
 
 [[deps]]
 type = "atom"
 label = "virt"
-version = "0.1.0-local"
+version = "0.1.0"
 set = "f9a488b7db85be544ff5c5aaaaf7af0eaee72ad5"
+rev = "cc1a999aa67bf05a6152bcae987625005a3c7977"
+mirror = "https://github.com/nrdxp/home"
 id = "ie1he618r631ucv479nm70d8dbu806141f303oduklqio5hqlcvg"
 
 [[deps]]
