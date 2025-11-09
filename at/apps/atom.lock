@@ -8,7 +8,10 @@ mirrors = ["https://github.com/ekala-project/atom"]
 
 [sets.f9a488b7db85be544ff5c5aaaaf7af0eaee72ad5]
 tag = "home"
-mirrors = ["::"]
+mirrors = [
+    "::",
+    "https://github.com/nrdxp/home",
+]
 
 [locker]
 label = "nix-lock"
@@ -31,8 +34,10 @@ entry = "."
 [[deps]]
 type = "atom"
 label = "nix"
-version = "0.1.0-local"
+version = "0.1.0"
 set = "f9a488b7db85be544ff5c5aaaaf7af0eaee72ad5"
+rev = "368058a97486092b6ad2ea3b078f6bdf49030e62"
+mirror = "https://github.com/nrdxp/home"
 id = "7rdvqdevk7v7nn96ehq775i3shdahg8psesqh1bnnra5hre1k3b0"
 
 [[deps]]
